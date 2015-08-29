@@ -4,11 +4,18 @@ A dead simple PHP captcha.
 
 ---
 
+* [Disclaimer](#disclaimer)
 * [Installation](#installation)
 * [Usage](#usage)
 * [Changelog](#changelog)
 * [License](#license)
 * [Credits](#credits)
+
+## Disclaimer
+
+This captcha should be considered as a *proof of concept*, and a simple demo of image generation in PHP.
+
+It should not be used on production environments, as it can be easily defeated by captcha solvers or [OCR](https://en.wikipedia.org/wiki/Optical_character_recognition) softwares.
 
 ## Installation
 
