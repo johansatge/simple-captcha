@@ -66,7 +66,7 @@ class SimpleCaptcha
 
     private function drawText()
     {
-        $fonts     = glob(dirname(__FILE__) . '/assets/fonts/*.ttf');
+        $fonts     = glob(dirname(__FILE__) . '/fonts/*.ttf');
         $text      = '';
         $font_size = $this->width / $this->height < $this->chars_count ? $this->width / $this->chars_count - 15 : $this->height - 15;
         for ($index = 0; $index < $this->chars_count; $index += 1)
