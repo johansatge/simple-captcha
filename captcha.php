@@ -3,16 +3,14 @@
 session_start();
 date_default_timezone_set('UTC');
 
-$uniqid  = !empty($_GET['uniqid']) ? $_GET['uniqid'] : microtime(true);
-$width   = !empty($_GET['width']) && $_GET['width'] <= 1000 && $_GET['width'] > 0 ? intval($_GET['width']) : 300;
-$height  = !empty($_GET['height']) && $_GET['height'] <= 1000 && $_GET['height'] > 0 ? intval($_GET['height']) : 80;
-$captcha = new SimpleCaptcha($uniqid, $width, $height);
+$width   = !empty($_GET['width']) && $_GET['width'] <= 1000 && $_GET['width'] > 0 ? $_GET['width'] : 300;
+$height  = !empty($_GET['height']) && $_GET['height'] <= 1000 && $_GET['height'] > 0 ? $_GET['height'] : 80;
+$captcha = new SimpleCaptcha($width, $height);
 $captcha->output();
 
 class SimpleCaptcha
 {
 
-    private $uniqid;
     private $image;
     private $width;
     private $height;
@@ -23,9 +21,8 @@ class SimpleCaptcha
     private $bg_color = 'ffffff';
     private $session_key = 'simple_captcha';
 
-    public function __construct($uniqid, $width, $height)
+    public function __construct($width, $height)
     {
-        $this->uniqid = md5($uniqid);
         $this->width  = intval($width);
         $this->height = intval($height);
     }
@@ -91,7 +88,7 @@ class SimpleCaptcha
         {
             $_SESSION[$this->session_key] = array();
         }
-        $_SESSION[$this->session_key][$this->uniqid] = $text;
+        $_SESSION[$this->session_key] = $text;
     }
 
     private function outputPNG()
